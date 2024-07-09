@@ -16,21 +16,31 @@ class Register extends Controller
 
     public function registerData(Request $request)
     {
-        // $rules = [
-        //     'Pname' => 'required | min:3 | max:255',
-        //     'Pdescription' => 'required | min:3 | max:255',
-        //     'price' => 'required | numeric',
-        //     'quantity' => 'required | numeric',
-        //     'stock' => 'required | numeric',
-        //     'Abilablequantity' => 'required | numeric',
-        //     'image' => 'required | mimes:jpeg,jpg,png,gif | max:1000000',
-        // ];
+      // Validate the request
+    // $validatedData = $request->validate([
+    //     'Pname' => 'required|string|max:255',
+    //     'Pdescription' => 'required|string',
+    //     'price' => 'required|numeric',
+    //     'quantity' => 'required|integer',
+    //     'stock' => 'required|integer',
+    //     'Abilablequantity' => 'required|integer',
+    //     'Catogery' => 'required|string',
+    //     'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg', // Add validation rules for image
+    // ]);
 
-        // $validator = Validator::make($request->all(), $rules);
+    // // Handle the file upload
+    // if ($request->hasFile('image')) {
+    //     $file = $request->file('image');
+    //     $extension = $file->getClientOriginalExtension(); // Get the file extension
+    //     $filename = time() . '.' . $extension; // Create a unique filename
+    //     $file->move(public_path('images'), $filename); // Move the file to the desired location
+    //     $validatedData['image'] = $filename; // Store the filename in the validated data array
+    // }
 
-        // if($validator->fails()){
-        //     return redirect()->back()->withErrors($validator)->withInput();
-        // }
+    // Create the product
+    // $product = new Prduct($validatedData);
+    // $product->save();
+
 
         $product = new prduct();
         $product->Pname = $request->name;
@@ -38,15 +48,16 @@ class Register extends Controller
         $product->price = $request->price;
         $product->quantity = $request->quantity;
         $product->stock = $request->stock;
-        $product->Abilablequantity = $request->stock;
+        $product->Title = $request->stock;
+        $product->Catogery= $request->catogery;
 
-        if($request->hasFile('img')){
-            $image = $request->img;
+       
+            $image = $request->image;
             $ext = $image->getClientOriginalExtension();
             $imageName = time().'.'.$ext;
             $image->move(public_path('upload/images'), $imageName);
             $product->image = $imageName;
-        }
+        
 
         $product->save();
         
@@ -66,5 +77,52 @@ class Register extends Controller
         // return view('homepage');
     }
     
-      
+    public function productView($id)
+    {
+        $product = prduct::findorFail($id);
+        // return view('viewBlogpage', ['product' => $product]);
+
+        // return view('viewBlogpage', ['products' => $product]);
+        if (!$product) {
+            // Handle the case when the product is not found
+            return redirect()->route('homepage')->withErrors(['Product not found.']);
+        }
+    
+        return view('viewBlogpage', compact('product'));
+    }
+    
+    public function editDelete()
+    {
+        $products = prduct::orderBy('id', 'DESC')->get();
+        return view('EditDeletePage', ['products' => $products]);
+        
+    }
+
+    public function edit($id)
+    {
+        $product = prduct::findorFail($id);
+        return view('edit', ['product' => $product]);
+    }
+
+    public function delete($id)
+    {
+        $product = prduct::findorFail($id);
+        $product->delete();
+        return redirect()->route('product.edit.delete')->with('success', 'Product has been deleted successfully');
+    }
+
+    public function search( Request $request)
+    {
+        // $search = $request->search;
+        // $products = prduct::where('Pname', 'like', '%'.$search.'%')->get();
+        // return view('EditDeletePage', ['products' => $products]);
+
+        $search = $request->input('search');
+        $products = Prduct::where('Pname', 'like', '%' . $search . '%')
+            ->orWhere('id', 'like', '%' . $search . '%')
+            ->get();
+        return view('search', ['products' => $products]);
+    
+    }
+    
 }

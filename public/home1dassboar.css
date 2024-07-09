@@ -18,6 +18,55 @@ body {
 
 
 
+.editall
+{
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    gap: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+}
+.edit1
+{
+    background-color: #a5fbb8;
+    padding: 5px;
+    border-radius: 5px;
+    /* color: #000; */
+    /* text-decoration: #000; */
+   
+} 
+
+
+.edit1 a
+{
+    text-decoration: none;
+    color: #000;
+}
+
+.edit2
+{
+    background-color: #fb7d5d;
+    padding: 5px;
+    border-radius: 5px;
+    /* color: #000; */
+    /* text-decoration: #000; */
+   
+} 
+
+.edit2 a
+{
+    text-decoration: none;
+    color: #000;
+}
+
+
+#Title
+{
+    text-decoration:double;
+    color: #3ae55f;
+}
 
 
 

@@ -1,0 +1,48 @@
+
+.card_info .img img {
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    max-width: 100%; /* Prevents the image from exceeding the container size */
+    display: block; /* Removes the bottom space for inline images */
+}
+
+.imgsize{
+    width: 55%;
+    height: 40%; /* Maintain aspect ratio */
+    max-width: 100%; /* Prevents the image from exceeding the container size */
+    display: block; /* Removes the bottom space for inline images */
+    /* justify-content: center; */
+    align-items: center;
+    margin-left: 25%;
+
+}
+
+.tilte
+{
+    text-align: center;
+    font-size: 1.8rem;
+    color: #393b3a;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.tilte2
+{
+    text-align: center;
+    font-size: 1.8rem;
+    color: #393b3a;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.disc
+{
+    width: 50%;
+    text-align: center;
+    justify-items: center;
+    margin-left: 25%;
+    font-size: 1.2rem;
+    color: #393b3a;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}

@@ -6,17 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../dashboarde.css">
+    <!-- <link rel="stylesheet" href="../dashboarde.css"> -->
     </link>
     <link rel="stylesheet" href="add.css">
     <title>Document</title>
 </head>
 
 <body>
-    <?php
-    ?>
+@include('navbar')
     <div class="all">
-        <form method="POST" action="{{route('register.data')}}">
+        <form method="POST" action="{{route('register.data')}}" enctype="multipart/form-data" >
             @csrf
             <label>Product Name</label>
             <input type="text" name="name" value="">
@@ -48,6 +47,12 @@
 
             </p>
 
+            <label>Catogeory</label>
+            <input type="text" name="catogery"  value="">
+            <p class="error password-error">
+
+            </p>
+
             <!-- <label>Allergy Info</label>
             <input type="text" name="allergy_info" value="">
             <p class="error password-error"> -->
@@ -55,7 +60,7 @@
             </p>
 
             <label>Image</label>
-            <input type="file" name="img" placeholder="image" value="">
+            <input type="file" name="image" placeholder="image" value="">
             <p class="error password-error">
 
             </p>
