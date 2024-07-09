@@ -116,13 +116,26 @@ class Register extends Controller
         // $search = $request->search;
         // $products = prduct::where('Pname', 'like', '%'.$search.'%')->get();
         // return view('EditDeletePage', ['products' => $products]);
-
+        
+        
         $search = $request->input('search');
-        $products = Prduct::where('Pname', 'like', '%' . $search . '%')
-            ->orWhere('id', 'like', '%' . $search . '%')
-            ->get();
-        return view('search', ['products' => $products]);
+        // echo $search;
+        if (preg_match('/\d/', $search)) {
+            // $products = Prduct::where('id', 'like', '%' . $search . '%')->get();
+            $products = Prduct::where('id', $search)->get();
+            return view('search', ['products' => $products]);
+           
+        }
+        else
+        {
+            $products = Prduct::where('Pname', 'like', '%' . $search . '%')->get();
+            return view('search', ['products' => $products]);
+        }
+      
+
     
     }
-    
 }
+
+    
+
