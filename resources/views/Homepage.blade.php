@@ -12,7 +12,7 @@
 </head>
 
 <body>
-  
+  @include('navbar')
 
 
     <div id="div">
