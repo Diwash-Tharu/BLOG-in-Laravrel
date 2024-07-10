@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\prduct;
 use Illuminate\Support\Facades\Validator;
+
 class Register extends Controller
 {
     //
@@ -16,61 +17,35 @@ class Register extends Controller
 
     public function registerData(Request $request)
     {
-      // Validate the request
-    // $validatedData = $request->validate([
-    //     'Pname' => 'required|string|max:255',
-    //     'Pdescription' => 'required|string',
-    //     'price' => 'required|numeric',
-    //     'quantity' => 'required|integer',
-    //     'stock' => 'required|integer',
-    //     'Abilablequantity' => 'required|integer',
-    //     'Catogery' => 'required|string',
-    //     'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg', // Add validation rules for image
-    // ]);
+         // Validate the request
+            $validatedData = $request->validate([
+                'name' => 'required|string|max:255',
+                'product_des' => 'required|string',
+                'Title' => 'required|string',
+                'catogery' => 'required',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg', // Adjusted image validation rules
+            ]);
 
-    // // Handle the file upload
-    // if ($request->hasFile('image')) {
-    //     $file = $request->file('image');
-    //     $extension = $file->getClientOriginalExtension(); // Get the file extension
-    //     $filename = time() . '.' . $extension; // Create a unique filename
-    //     $file->move(public_path('images'), $filename); // Move the file to the desired location
-    //     $validatedData['image'] = $filename; // Store the filename in the validated data array
-    // }
+            // Store product information
+            $product = new Prduct();
+            $product->Pname = $validatedData['name'];
+            $product->Pdescription = $validatedData['product_des'];
+            $product->Title = $validatedData['Title'];
+            $product->Catogery = $validatedData['catogery'];
 
-    // Create the product
-    // $product = new Prduct($validatedData);
-    // $product->save();
-
-
-        $product = new prduct();
-        $product->Pname = $request->name;
-        $product->Pdescription = $request->product_des;
-        $product->price = $request->price;
-        $product->quantity = $request->quantity;
-        $product->stock = $request->stock;
-        $product->Title = $request->stock;
-        $product->Catogery= $request->catogery;
-
-       
-            $image = $request->image;
-            $ext = $image->getClientOriginalExtension();
-            $imageName = time().'.'.$ext;
+            // Handle image upload
+            $image = $request->file('image');
+            $imageName = time().'.'.$image->getClientOriginalExtension();
             $image->move(public_path('upload/images'), $imageName);
             $product->image = $imageName;
-        
 
-        $product->save();
-        
-        return redirect()->route('/')->with('success', 'Product has been created successfully');
+            $product->save();
 
-        // return redirect()->route('register')->with('success', 'Product has been created successfully');
+            return redirect()->route('register')->with('success', 'Product has been created successfully');
     }
 
     public function HomePage()
     {
-        // $products = prduct::all();
-        // return view('show', compact('products'));
-
         $products = prduct::orderBy('id', 'DESC')->get();
         return view('Homepage', ['products' => $products]);
         
@@ -80,9 +55,6 @@ class Register extends Controller
     public function productView($id)
     {
         $product = prduct::findorFail($id);
-        // return view('viewBlogpage', ['product' => $product]);
-
-        // return view('viewBlogpage', ['products' => $product]);
         if (!$product) {
             // Handle the case when the product is not found
             return redirect()->route('homepage')->withErrors(['Product not found.']);
@@ -99,13 +71,67 @@ class Register extends Controller
     }
 
     public function edit($id)
+
     {
         $product = prduct::findorFail($id);
-        return view('edit', ['product' => $product]);
+        return view('update', ['products' => $product]);
+        // echo $id;
+    }
+
+    public function update(Request $request, $id)
+    {
+        
+        $products = prduct::findorFail($id);
+        $image_Name=  $products->image;
+        $rules = [
+            'name' => 'required|string|max:255',
+            'product_des' => 'required|string',
+            'Title' => 'required|string',
+            'catogery' => 'required',
+
+        ];
+
+        if($request->image!="")
+        {
+
+            $rules['image'] ='image';
+        }
+
+   
+
+     $validator = Validator::make($request->all(), $rules);
+
+
+    
+        $products->Pname = $request->name;
+        $products->Pdescription= $request->product_des;
+        $products->Title = $request->Title;
+        $products->Catogery= $request->catogery;
+        $products->image = $request->image;
+        
+        if($request->image!=""){
+            $image = $request->file('image');
+            $imageName = time().'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('upload/images'), $imageName);
+            $products->image = $imageName;
+        
+        }
+        else
+        {
+        $products->image= $image_Name;
+        }
+
+        $products->save();
+
+
+          return redirect()->route('product.edit', $products->id)->with('success', 'Product has been created successfully');
+   
+        
     }
 
     public function delete($id)
     {
+
         $product = prduct::findorFail($id);
         $product->delete();
         return redirect()->route('product.edit.delete')->with('success', 'Product has been deleted successfully');
@@ -113,11 +139,8 @@ class Register extends Controller
 
     public function search( Request $request)
     {
-        // $search = $request->search;
-        // $products = prduct::where('Pname', 'like', '%'.$search.'%')->get();
-        // return view('EditDeletePage', ['products' => $products]);
-        
-        
+
+
         $search = $request->input('search');
         // echo $search;
         if (preg_match('/\d/', $search)) {

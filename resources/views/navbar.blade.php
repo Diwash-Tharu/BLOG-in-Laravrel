@@ -8,13 +8,13 @@
 </head>
 <body>
 <nav class="navbar navbar-light bg-light justify-content-between">
-  <a  href="{{route('home')}}" class="navbar-brand">Food Blog</a>
+  <a  href="{{route('home')}}" class="navbar-brand">Home Page</a>
   <form class="form-inline" method="post" action="{{route('product.search')}}">
     @csrf
     <input class="form-control mr-sm-2" type="text" name ="search" placeholder="Search" aria-label="Search">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
   </form>
-  <a class="navbar-brand">Log out</a>
+  <a class="navbar-brand">Food Blog</a>
 </nav>
 </body>
 </html>

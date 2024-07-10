@@ -22,40 +22,36 @@
     </div>
 
     <div class="more">
-   
 
-                    
             @foreach($products as $product)
                         
                         <a href="{{route('product.view', $product->id) }}">
-                        <!-- <a href='display_selected_prd.php?s_name=$img_name&s_id=$pid' class='single'> </a>;; -->
+             
                             <div class='card_info'>
-                            <!-- <img src="{{ asset('upload/images/' . $product->image) }}" alt="{{ $product->image }}"> -->
+                 
 
                                 <img src="{{asset('upload/images/'.$product->image)}}" alt="{{$product->image}}" >
                                 <div class='card-info'>
                                     <div class='card-details'>
-                                        <!-- // echo "<label>P_ID :  ".$row['PRODUCT_ID']."</label>"; -->
+                                      
                                         <label>Product ID:  {{ $product->id }}</label>
                                         <label>Prdouct Name:  <span>{{ $product->Pname }}<span></label>
                                     </div>
                                 </div>
                                 <div class='btns'>
-                                    <a href=""><i class='fa fa-edit' style='font-size:36px'></i>Edit</a>
-                                    <!-- <a href="" id='delete' >Delete</a> -->
-
-                                    <form  action="{{ route('products.delete', $product->id) }}" method="POST">
+                                <a href="{{route('product.edit',$product->id )}}"><i class='fa fa-edit' style='font-size:36px'></i>Edit</a>
+                                
+                                <form action="{{ route('products.delete', $product->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product?');">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" title="delete"   id='delete' style="border: none; background-color:transparent; text-decoration:none;">
+                                <button type="submit" title="delete" style="border: none; background-color: transparent; cursor: pointer;">
                                     <i class="fas fa-trash fa-lg text-danger">Delete</i>
                                 </button>
+                            </form>
 
                                 </div>
                             </div>
                         </a>
-                      
-            
                 @endforeach
 
     </div>

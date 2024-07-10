@@ -12,20 +12,11 @@
 </head>
 
 <body>
-  @include('navbar')
-<!-- 
-<div class="editall">
-            <div class="edit1">
-                <a href="{{route('register')}}" class="btn">Add Product</a>
-            </div>
-            <div class="edit2">
-                <a href="{{route('product.edit.delete')}}" class="btn">Edit Product/ Delete Product</a>
-            </div>
-           
-</div> -->
+    @include('navbar')
+
 
     <div id="div">
-      Search Result
+        Search Result
     </div>
 
     <div class="more">    
@@ -37,6 +28,7 @@
                                 <div class='card-info'>
                                     <div class='card-details'>
                                         <label>Name:  {{ $product->Pname }}</label>
+                                        <label>ID:  {{ $product->id }}</label>
                                         <label> <b> Title: </b> <span id="Title">  {{ $product->Title }}<span></label>
                                     </div>
                                 </div>

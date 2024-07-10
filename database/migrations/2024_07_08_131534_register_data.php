@@ -15,10 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('Pname');
             $table->string('Pdescription');
-            $table->double('price',12, 2);
-            $table->integer('quantity');
-            $table->integer('stock');
-            $table->string('Abilablequantity');
+            $table->string('Title');
+            $table->string('Catogery');
             $table->string('image');
             $table->timestamps();
         });

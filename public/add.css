@@ -6,7 +6,7 @@ input {
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-image: url('../dbimage/person-visiting-a-bank.png');
+
     opacity: 10;
     object-fit: cover;
 }
@@ -29,7 +29,7 @@ body {
 .all form {
     padding: 10px;
     gap: 2rem;
-    background-color: #d6eafb;
+    background-color: #d7dde1;
     width: 50%;
     margin-right: 2rem;
     margin-block: 2rem;

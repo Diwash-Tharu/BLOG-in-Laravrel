@@ -38,6 +38,8 @@
                                     <div class='card-details'>
                                         <label>Name:  {{ $product->Pname }}</label>
                                         <label> <b> Title: </b> <span id="Title">  {{ $product->Title }}<span></label>
+                                        <label> <b> ID: </b> <span id="Title">  {{ $product->id }}<span></label>
+
                                     </div>
                                 </div>
                             </div>
