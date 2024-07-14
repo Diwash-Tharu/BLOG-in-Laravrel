@@ -25,5 +25,9 @@ Route::put('/product/update/{id}', [Register::class, 'update'])->name('product.u
 
 Route::post('/product/search', [Register::class, 'search'])->name('product.search');
 
+Route::get('/user/login', [Register::class, 'search'])->name('user.login');
+
+Route::post('/user/login', [Register::class, 'login'])->name('user.login.data');
+
 
 
