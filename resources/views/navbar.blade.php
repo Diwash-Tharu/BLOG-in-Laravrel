@@ -15,6 +15,8 @@
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
   </form>
   <a class="navbar-brand">Food Blog</a>
+  <a  href="{{route('user.login')}}" class="navbar-brand">Log In</a>
+
 </nav>
 </body>
 </html>
