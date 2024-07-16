@@ -158,6 +158,12 @@ class Register extends Controller
 
     
     }
+
+    public function registerUser()
+    {
+        // return view('login');
+        return view('userRegister');
+    }
 }
 
     
