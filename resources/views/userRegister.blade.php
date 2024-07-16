@@ -38,6 +38,9 @@
     <div>
         <button type="submit">Register</button>
     </div>
+    <div>
+        <button type="submit">Login</button>
+    </div>
 </form>
 </body>
 </html>
