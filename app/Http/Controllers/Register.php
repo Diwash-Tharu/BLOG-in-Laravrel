@@ -165,6 +165,7 @@ class Register extends Controller
     {
         // return view('login');
         // return view('userRegister');
+        return view('userRegister');
     }
 
     public function userlogin()
