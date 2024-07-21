@@ -45,6 +45,7 @@
             background-color: #4CAF50;
             color: #fff;
             padding: 10px 20px;
+            padding-bottom: 10px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
@@ -56,7 +57,7 @@
     </style>
 </head>
 <body>
-    <form method="POST" action="">
+    <form method="POST" action="{{route('')}}">
         @csrf
 
         <h1>User Registration</h1>
@@ -90,7 +91,7 @@
             <button type="submit">Register</button>
         </div>
         <div>
-            <button type="submit">Login</button>
+            <button type="submit" id="">Login</button>
         </div>
     </form>
 </body>

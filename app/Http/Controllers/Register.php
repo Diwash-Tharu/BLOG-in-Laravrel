@@ -190,6 +190,24 @@ class Register extends Controller
         //     return redirect()->route('user.login')->withErrors(['Invalid email']);
         // }
     }
+
+    public function registerUserData(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|string|min:6',
+        ]);
+
+        
+        $user = new User();
+        $user->name = $validatedData['name'];
+        $user->email = $validatedData['email'];
+        $user->password = Hash::make($validatedData['password']);
+        $user->save();
+
+        return redirect()->route('user.login')->with('success', 'User has been registered successfully');
+    }
 }
 
     
