@@ -199,7 +199,7 @@ class Register extends Controller
             'password' => 'required|string|min:6',
         ]);
 
-            return redirect()->route('user.register')->withErrors(['Password and confirm password do not match']);
+        
             $user = new User();
             $user->name = $validatedData['name'];
             $user->email = $validatedData['email'];
