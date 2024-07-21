@@ -57,7 +57,7 @@
     </style>
 </head>
 <body>
-    <form method="POST" action="{{route('')}}">
+    <form method="POST" action="{{route('user.register.data')}}">
         @csrf
 
         <h1>User Registration</h1>
