@@ -190,6 +190,7 @@ class Register extends Controller
         // } else {
         //     return redirect()->route('user.login')->withErrors(['Invalid email']);
         // }
+        
     }
 
     public function registerUserData(Request $request)
