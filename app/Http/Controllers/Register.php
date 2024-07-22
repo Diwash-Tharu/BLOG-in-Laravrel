@@ -187,7 +187,7 @@ class Register extends Controller
             } else {
                 return redirect()->route('user.login')->withErrors(['Invalid password']);
 
-                return view('Homepage', ['products' => $user]);
+                // return view('Homepage', ['products' => $user]);
             }
         } else {
             return redirect()->route('user.login')->withErrors(['Invalid email']);
