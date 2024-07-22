@@ -180,16 +180,19 @@ class Register extends Controller
         $password = $request->password;
 
         $user = User::where('email', $email)->first();
-        echo $user;
-        // if ($user) {
-        //     if (Hash::check($password, $user->password)) {
-        //         return redirect()->route('home');
-        //     } else {
-        //         return redirect()->route('user.login')->withErrors(['Invalid password']);
-        //     }
-        // } else {
-        //     return redirect()->route('user.login')->withErrors(['Invalid email']);
-        // }
+        // echo $user;
+        if ($user) {
+            if (Hash::check($password, $user->password)) {
+                return redirect()->route('home');
+            } else {
+                return redirect()->route('user.login')->withErrors(['Invalid password']);
+
+                return view('Homepage', ['products' => $user]);
+            }
+        } else {
+            return redirect()->route('user.login')->withErrors(['Invalid email']);
+        }
+
         
     }
 
