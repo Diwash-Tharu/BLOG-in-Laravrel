@@ -212,18 +212,7 @@ class Register extends Controller
             return redirect()->route('home')->with('success', 'User has been registered successfully');
     }
 
-
-    public function get_browserda()
-    {
-        return view('get_browser');
-    }
-
-    public function get_browser(Request $request)
-    {
-        $user_agent = $request->header('User-Agent');
-        $browser = $this->getBrowser($user_agent);
-        return view('get_browser', ['browser' => $browser]);
-    }
+// this ois the omment 
 }
 
     
