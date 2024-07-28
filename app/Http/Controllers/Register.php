@@ -211,6 +211,11 @@ class Register extends Controller
             $user->save();
             return redirect()->route('home')->with('success', 'User has been registered successfully');
     }
+
+    public function diwash()
+    {
+        return view('login');
+    }
 }
 
     
