@@ -212,9 +212,10 @@ class Register extends Controller
             return redirect()->route('home')->with('success', 'User has been registered successfully');
     }
 
-    public function diwash()
+
+    public function get_browserda()
     {
-        return view('login');
+        return view('get_browser');
     }
 }
 
