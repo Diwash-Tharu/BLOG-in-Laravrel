@@ -212,6 +212,10 @@ class Register extends Controller
             return redirect()->route('home')->with('success', 'User has been registered successfully');
     }
 
+    public function logout()
+    {
+        return redirect()->route('user.login');
+    }
 // this ois the omment 
 }
 
