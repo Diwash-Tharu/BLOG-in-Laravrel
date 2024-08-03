@@ -216,6 +216,11 @@ class Register extends Controller
     {
         return redirect()->route('user.login');
     }
+
+    public function home()
+    {
+        return view('Homepage');
+    }
 // this ois the omment 
 }
 
