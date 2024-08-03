@@ -224,9 +224,11 @@ class Register extends Controller
         return view('Homepage');
     }
 // this ois the omment 
-    public function userHome()
+  
+
+    public function userLogout()
     {
-        return view('Homepage');
+        return redirect()->route('user.login');
     }
 
     public function userLogout()
@@ -287,9 +289,10 @@ class Register extends Controller
         return view('Homepage');
     }
 
-    public function userRegisterData()
+    public function userSS()
     {
-        return view('userRegister
+        return redirect()->route('user.login');
+    }
 
 }
 
