@@ -279,36 +279,7 @@ class Register extends Controller
         return redirect()->route('home')->with('success', 'User has been registered successfully');
     }
 
-    public function userLogoutData()
-    {
-        return redirect()->route('user.login');
-    }
 
-    public function userHomeData()
-    {
-        return view('Homepage');
-    }
-
-    public function userSS()
-    {
-        return redirect()->route('user.login');
-    }
-
-
-    public function userloginds()
-    {
-        return redirect()->route('user.login');
-    }
-
-    public function adminRegisterData()
-    {
-        return view('userRegister');
-    }
-
-    public function adminLooutData()
-    {
-        return view('login');
-    }
 }
 
     
