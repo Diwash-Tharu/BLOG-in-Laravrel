@@ -304,6 +304,11 @@ class Register extends Controller
     {
         return view('userRegister');
     }
+
+    public function adminLooutData()
+    {
+        return view('login');
+    }
 }
 
     
