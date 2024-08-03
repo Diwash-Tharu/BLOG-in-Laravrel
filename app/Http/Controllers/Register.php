@@ -299,6 +299,11 @@ class Register extends Controller
     {
         return redirect()->route('user.login');
     }
+
+    public function adminRegisterData()
+    {
+        return view('userRegister');
+    }
 }
 
     
