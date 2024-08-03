@@ -173,6 +173,8 @@ class Register extends Controller
         return view('login');
     }
 
+    
+
     public function login(Request $request)
     {
         // echo "login";
@@ -222,6 +224,73 @@ class Register extends Controller
         return view('Homepage');
     }
 // this ois the omment 
+    public function userHome()
+    {
+        return view('Homepage');
+    }
+
+    public function userLogout()
+    {
+        return redirect()->route('user.login');
+    }
+
+    public function userRegister()
+    {
+        return view('userRegister');
+    }
+
+    public function userLogin()
+    {
+        return view('login');
+    }
+
+    public function userLoginData(Request $request)
+    {
+        $email = $request->email;
+        $password = $request->password;
+
+        $user = User::where('email', $email)->first();
+        if ($user) {
+            if (Hash::check($password, $user->password)) {
+                return redirect()->route('home');
+            } else {
+                return redirect()->route('user.login')->withErrors(['Invalid password']);
+            }
+        } else {
+            return redirect()->route('user.login')->withErrors(['Invalid email']);
+        }
+    }
+
+    public function userRegisterData(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|string|min:6',
+        ]);
+
+        $user = new User();
+        $user->name = $validatedData['name'];
+        $user->email = $validatedData['email'];
+        $user->password = Hash::make($validatedData['password']);
+        $user->save();
+        return redirect()->route('home')->with('success', 'User has been registered successfully');
+    }
+
+    public function userLogoutData()
+    {
+        return redirect()->route('user.login');
+    }
+
+    public function userHomeData()
+    {
+        return view('Homepage');
+    }
+
+    public function userRegisterData()
+    {
+        return view('userRegister
+
 }
 
     
