@@ -294,6 +294,11 @@ class Register extends Controller
         return redirect()->route('user.login');
     }
 
+
+    public function userloginds()
+    {
+        return redirect()->route('user.login');
+    }
 }
 
     
