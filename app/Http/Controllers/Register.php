@@ -279,6 +279,7 @@ class Register extends Controller
         return redirect()->route('home')->with('success', 'User has been registered successfully');
     }
 
+    
 
 }
 
