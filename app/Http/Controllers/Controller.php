@@ -10,5 +10,8 @@ abstract class Controller
         return view('register');
     }
 
-   
+    public function twochange()
+    {
+        return view('login');
+    }
 }
