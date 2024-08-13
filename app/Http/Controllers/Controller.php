@@ -43,5 +43,10 @@ abstract class Controller
     {
         return view('login');
     }
+    // this is for the linkedin 
+    public function linkedin()
+    {
+        return view('linkedin');
+    }
 
 }
