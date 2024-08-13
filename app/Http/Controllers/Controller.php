@@ -49,4 +49,10 @@ abstract class Controller
         return view('linkedin');
     }
 
+    // this is for the facebook
+    public function facebook()
+    {
+        return view('facebook');
+    }
+
 }
