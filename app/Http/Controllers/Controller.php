@@ -15,4 +15,10 @@ abstract class Controller
         return view('login');
     }
     // public function threechange()
+
+    public function fourchange()
+    {
+        return view('home');
+    }
+
 }
