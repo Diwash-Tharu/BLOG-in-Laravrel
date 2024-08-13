@@ -39,4 +39,9 @@ abstract class Controller
             return redirect()->route('register')->with('success', 'Product has been created successfully');
     }
 
+    public function threechange()
+    {
+        return view('login');
+    }
+
 }
